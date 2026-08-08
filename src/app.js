@@ -583,8 +583,8 @@ function armMeters(){$$('.meter i[data-w]').forEach(m=>{if(m.style.width==='0px'
 window.addEventListener('load',armMeters);
 new MutationObserver(armMeters).observe(document.body,{childList:true,subtree:true});
 if(document.body.classList.contains('anim')){
-  const riseIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('risen');riseIO.unobserve(e.target)}}),{threshold:.18});
-  const armRise=()=>$$('.sec-head,.who .card,.grid3 .card,.dest,.rcard,.stat-t,.vcard,.rule,.commrep,.founder-in,.method>div').forEach(el=>{if(!el.classList.contains('risen'))riseIO.observe(el)});
+  const riseIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('risen');riseIO.unobserve(e.target)}}),{threshold:.12});
+  const armRise=()=>$$('.sec-head,.who .card,.grid3 .card,.dest,.rcard,.stat-t,.vcard,.rule,.commrep,.founder-in,.method>div,.hood,.scen,.rcard-s,.citycard,.way,.fact').forEach(el=>{if(!el.classList.contains('risen')&&!el.classList.contains('will-rise')){el.classList.add('will-rise');riseIO.observe(el)}});
   window.addEventListener('load',armRise);
   new MutationObserver(armRise).observe(document.body,{childList:true,subtree:true});
 }

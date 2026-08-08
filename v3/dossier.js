@@ -44,4 +44,22 @@
     render(b.dataset.bmode);
   });
   render('school');
+
+  /* chapter-rail scrollspy: highlight the section currently in view */
+  const links=[...document.querySelectorAll('.subnav a')];
+  if(links.length && 'IntersectionObserver' in window){
+    const map={};
+    links.forEach(a=>{const id=a.getAttribute('href').slice(1);map[id]=a});
+    const spy=new IntersectionObserver(es=>{
+      es.forEach(e=>{
+        if(e.isIntersecting){
+          links.forEach(a=>a.classList.remove('cur'));
+          const a=map[e.target.id]; if(a){a.classList.add('cur');
+            const c=a.closest('.subnav-in');
+            if(c) c.scrollTo({left:a.offsetLeft-c.clientWidth/2+a.clientWidth/2,behavior:'smooth'})}
+        }
+      });
+    },{rootMargin:'-25% 0px -65% 0px'});
+    Object.keys(map).forEach(id=>{const s=document.getElementById(id);if(s)spy.observe(s)});
+  }
 })();

@@ -234,10 +234,14 @@ h1,h2,h3{font-family:var(--disp);font-weight:640;line-height:1.06;text-wrap:bala
 .doss-hero .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
 .doss-hero .chip{background:rgba(43,30,66,.6);border-color:rgba(247,237,224,.3);color:#EDE4D5}
 .doss-hero .chip .tick{color:#F0A868}
-.subnav{position:sticky;top:66px;z-index:40;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);overflow-x:auto}
-.subnav-in{display:flex;gap:4px;padding:9px 0}
-.subnav a{font-family:var(--disp);font-weight:600;font-size:.74rem;letter-spacing:.04em;color:var(--ink-2);text-decoration:none;padding:.5em .9em;border-radius:999px;white-space:nowrap}
+.subnav{position:sticky;top:66px;z-index:40;background:transparent;pointer-events:none}
+.subnav-in{display:flex;gap:2px;padding:10px 6px;margin:10px auto 0;max-width:fit-content;background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:blur(12px);border:1px solid var(--line-2);border-radius:999px;box-shadow:var(--shadow);overflow-x:auto;pointer-events:auto;counter-reset:chap;scrollbar-width:none}
+.subnav-in::-webkit-scrollbar{display:none}
+.subnav a{font-family:var(--disp);font-weight:600;font-size:.72rem;letter-spacing:.03em;color:var(--ink-2);text-decoration:none;padding:.5em .85em .5em .7em;border-radius:999px;white-space:nowrap;display:inline-flex;align-items:baseline;gap:.5em;transition:background .15s,color .15s}
+.subnav a::before{counter-increment:chap;content:counter(chap,decimal-leading-zero);font-size:.58rem;font-weight:700;color:var(--apricot-2);opacity:.85}
 .subnav a:hover{background:var(--alt);color:var(--ink)}
+.subnav a.cur{background:var(--sun);color:#FFF6EA}
+.subnav a.cur::before{color:#FFE9CE}
 .dsec{padding:56px 0 8px}
 .dsec h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-top:14px;margin-bottom:8px}
 .dsec>.wrap>p.intro{color:var(--ink-2);max-width:46em;margin-bottom:8px}
@@ -321,10 +325,10 @@ tr.total td{background:var(--alt);font-weight:700;border-top:2px solid var(--lin
 .vswitch a:hover{color:var(--ink)}
 .vswitch a.cur{background:var(--sun);color:#FFF6EA}
 
-/* scroll reveal */
-body.anim .sec-head,body.anim .who .card,body.anim .grid3 .card,body.anim .dest,body.anim .rcard,body.anim .stat-t,body.anim .vcard,body.anim .rule,body.anim .commrep,body.anim .founder-in,body.anim .method>div{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1)}
-body.anim .risen{opacity:1;transform:none}
-@media (prefers-reduced-motion: reduce){body.anim .sec-head,body.anim .who .card,body.anim .grid3 .card,body.anim .dest,body.anim .rcard,body.anim .stat-t,body.anim .vcard,body.anim .rule,body.anim .commrep,body.anim .founder-in,body.anim .method>div{opacity:1;transform:none}}
+/* scroll reveal — JS adds .will-rise before observing, so content is never hidden if JS fails */
+body.anim .will-rise{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1)}
+body.anim .will-rise.risen{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){body.anim .will-rise{opacity:1;transform:none}}
 
 /* responsive */
 @media (max-width:980px){
