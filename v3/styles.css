@@ -108,9 +108,12 @@ h1,h2,h3{font-family:var(--disp);font-weight:640;line-height:1.06;text-wrap:bala
 .method b{display:block;font-family:var(--disp);font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;background:var(--sun);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px}
 .method span{font-size:.9rem;color:var(--ink-2)}
 .who{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.who .card{border-radius:999px 999px var(--r) var(--r);padding-top:40px;text-align:center}
-.who ul{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:8px;text-align:left}
-.who li{font-size:.9rem;color:var(--ink-2);padding-left:1.3em;position:relative}
+.who .card{padding:24px 26px 26px}
+.who-head{display:flex;align-items:center;gap:16px;margin-bottom:16px;padding-bottom:16px;border-bottom:1.5px dashed var(--line)}
+.who-arch{flex:0 0 78px;width:78px;height:98px;border-radius:999px 999px 12px 12px;background-size:cover;background-position:center;box-shadow:0 6px 16px -6px rgba(56,44,66,.35);border:3px solid var(--card);outline:1.5px solid var(--line-2)}
+.who-head h3{font-size:1.14rem;margin:0}
+.who ul{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+.who li{font-size:.9rem;color:var(--ink-2);padding-left:1.35em;position:relative}
 .who li::before{content:"☾";position:absolute;left:0;color:var(--apricot);font-size:.8em;top:.2em}
 .dests{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
 .dest{background:var(--card);border:1px solid var(--line);border-radius:999px 999px var(--r) var(--r);overflow:hidden;text-align:center;padding:0 0 6px;display:flex;flex-direction:column;box-shadow:var(--shadow);transition:transform .18s ease}
