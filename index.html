@@ -5,8 +5,22 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>InheritEarth — Find where in the world your family should live</title>
 <meta name="description" content="A personalized relocation intelligence platform for families. Weighted matching across schools, visas, cost, faith community, belonging, healthcare — every number sourced and dated.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="InheritEarth — Find where in the world your family should live">
+<meta property="og:description" content="16 questions. Your priorities. An honest, weighted ranking of destinations — every number sourced and dated. Built for families, including the questions the forums can't answer.">
+<meta property="og:url" content="https://inheriting-islam.github.io/inheritearth-prototype/">
+<meta property="og:image" content="https://inheriting-islam.github.io/inheritearth-prototype/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="InheritEarth — Find where in the world your family should live">
+<meta name="twitter:image" content="https://inheriting-islam.github.io/inheritearth-prototype/assets/og.jpg">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>">
 <link rel="stylesheet" href="src/styles.css">
+<!-- ANALYTICS — uncomment after creating accounts (see README.md):
+<script defer data-domain="inheriting-islam.github.io" src="https://plausible.io/js/script.js"></script>
+<script>/* PostHog snippet + posthog.init('YOUR_KEY',{api_host:'https://us.i.posthog.com'}) */</script>
+-->
 </head>
 <body>
 
@@ -54,7 +68,7 @@
           </div>
           <div class="foot">
             <span class="chip"><span class="tick">✓</span> Verified Aug 2026</span>
-            <span class="chip">31 int'l schools</span>
+            <span class="chip">30+ int'l schools</span>
           </div>
         </div>
       </article>
@@ -98,7 +112,7 @@
     </div>
     <div class="dests">
       <button class="dest" data-nav="dossier"><span class="ph" style="background-image:url('assets/kl-skyline-sm.jpg')"></span>
-        <span class="bd"><h3>Kuala Lumpur</h3><span class="stat">Family budget <b>~$3,400/mo</b></span><span class="stat">Int'l schools <b>31 verified</b></span></span></button>
+        <span class="bd"><h3>Kuala Lumpur</h3><span class="stat">Family budget <b>~$3,400/mo</b></span><span class="stat">Deepest school bench in the region</span></span></button>
       <button class="dest" data-nav="quiz"><span class="ph" style="background-image:url('assets/penang-sm.jpg')"></span>
         <span class="bd"><h3>Penang</h3><span class="stat">Family budget <b>~$2,700/mo</b></span><span class="stat">Island pace, real schools</span></span></button>
       <button class="dest" data-nav="quiz"><span class="ph" style="background-image:url('assets/lombok-beach-sm.jpg')"></span>
@@ -116,7 +130,21 @@
     <cite>— A mother in Texas, r/AmerExit, January 2025. This is who we build for.</cite>
   </div></section>
 
-  <section class="sec" id="methodology"><div class="wrap">
+  <section class="sec" id="founder"><div class="wrap founder-in">
+    <div class="avatar" aria-hidden="true"><span>HA</span></div>
+    <div>
+      <div class="eyebrow">Who's behind this</div>
+      <h2>Built by a father doing this research for real.</h2>
+      <p class="founder-p">Assalamu alaikum — I'm <b>Hamza Abdul-Tawwaab</b>: software engineer, Black American Muslim, husband, and father of two young kids. For the past two years my own family has been researching exactly this question — comparing Malaysia, Indonesia, Senegal (where my family has roots), Kenya, and Morocco, school fee schedules and visa portals and all.</p>
+      <p class="founder-p">InheritEarth is that research notebook made public. It's built under <b>Inheriting Islam</b>, my studio for digital khidma — and it's built for every family asking "where should we live?", whatever brings you to the question. I will always tell you what the data says, including when it says "don't."</p>
+      <div class="founder-chips">
+        <span class="chip">Researching this move since 2024</span>
+        <span class="chip">Answers every email personally</span>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="sec sec-alt" id="methodology"><div class="wrap">
     <div class="sec-head">
       <div class="eyebrow">Why trust this</div>
       <h2>The un-fakeable parts.</h2>
@@ -126,6 +154,7 @@
       <div class="card"><div class="stepnum">b.</div><h3>Honesty about thin data</h3><p>Where our data is thin — new city, small community sample — the score says "estimated" and the confidence drops. We'd rather rank lower than invent certainty.</p></div>
       <div class="card"><div class="stepnum">c.</div><h3>Exclusions, out loud</h3><p>If a city fails your deal-breakers, we don't quietly bury it. We tell you exactly why: "excluded — no accredited international school verified."</p></div>
     </div>
+    <p style="margin-top:26px"><button class="rlink" data-nav="method">Read the full methodology — the seven rules we score by →</button></p>
   </div></section>
 
   <footer class="ftr"><div class="wrap">
@@ -142,10 +171,10 @@
         <button data-nav="dossier">Kuala Lumpur dossier</button>
       </nav>
       <div class="ftr-col">
-        <b>In research</b>
-        <span>Penang · Lombok · Dakar · Casablanca</span>
-        <span>Methodology &amp; sources</span>
-        <span>Membership &amp; reports</span>
+        <b>The product</b>
+        <button data-nav="method">Methodology &amp; sources</button>
+        <span>In research: Penang · Lombok · Dakar · Casablanca</span>
+        <span>Coming: membership &amp; reports</span>
       </div>
     </div>
     <div class="ftr-div" role="presentation"></div>
@@ -184,7 +213,7 @@
   <section class="doss-hero" style="background-image:url('assets/kl-skyline.jpg')"><div class="wrap">
     <div class="eyebrow" style="color:var(--brass)">City dossier · Malaysia</div>
     <h1>Kuala Lumpur</h1>
-    <p class="sub">The deepest family toolkit in the Muslim world: 31 international schools, JCI hospitals, English everywhere, and a visa menu that actually includes families.</p>
+    <p class="sub">The deepest family toolkit in the Muslim world: 30+ international schools, JCI hospitals, English everywhere, and a visa menu that actually includes families.</p>
     <div class="chips">
       <span class="chip"><span class="tick">✓</span> Updated Aug 2026</span>
       <span class="chip"><span class="tick">✓</span> Human-reviewed Jul 2026</span>
@@ -201,7 +230,7 @@
     <h2>The numbers a family actually needs first.</h2>
     <div class="stats">
       <div class="stat-t"><div class="n">~$3,400<span style="font-size:1rem;color:var(--ink-3)">/mo</span></div><div class="l">Realistic family-of-4 budget incl. mid-tier int'l school</div><span class="chip"><span class="tick">✓</span> model · Aug 2026</span></div>
-      <div class="stat-t"><div class="n">31</div><div class="l">Accredited international schools in metro KL</div><span class="chip"><span class="tick">✓</span> verified list</span></div>
+      <div class="stat-t"><div class="n">30+</div><div class="l">International schools in metro KL</div><span class="chip">fee database in progress</span></div>
       <div class="stat-t"><div class="n">$900–1,400</div><div class="l">3-bedroom family rental, expat-favorite neighborhoods</div><span class="chip">12 listings sampled</span></div>
       <div class="stat-t"><div class="n">3</div><div class="l">JCI-accredited hospitals with pediatrics + NICU</div><span class="chip"><span class="tick">✓</span> verified</span></div>
     </div>
@@ -279,7 +308,7 @@
       <div>
         <p class="intro" style="margin-bottom:14px">The azan is ambient. Halal is the default at every table. Eid empties the city twice a year, schools plan around Ramadan, and every neighborhood keeps a surau within walking distance. For families coming from places where practicing takes planning, the change is the point.</p>
         <div class="commrep" style="margin-top:8px">
-          <div class="head"><h3>What families report</h3><span class="chip">n=41 family reports · 2025–26 · prototype sample</span></div>
+          <div class="head"><h3>What families report</h3><span class="chip">Compiled from first-person accounts in public communities, 2023–26 · resident survey underway</span></div>
           <blockquote>"My kids learned more Qur'an in one year of school here than in five years of weekend classes back home."</blockquote>
           <p class="attr">US family, 3 years in KL — community interview</p>
           <blockquote>"There are tons of masjids, halal food everywhere... if you have any questions about Malaysia, you can ask me."</blockquote>
@@ -294,8 +323,8 @@
     <div class="eyebrow">Belonging</div>
     <h2>The Black-family experience, reported by Black families.</h2>
     <div class="commrep">
-      <div class="head"><h3>Community-reported — not a score we invented</h3><span class="chip warn">n=9 reports · below our n=10 bar — shown as testimony, not a number</span></div>
-      <p style="color:var(--ink-2);font-size:.95rem;margin-bottom:6px">Reports so far: curiosity more than hostility; American accent reads before skin color in most interactions; a small but real Black American community anchored around int'l schools and remote-work circles. Colorism exists in local contexts — families report it as "noticed, not targeted." We're commissioning more resident interviews before this becomes a scored pillar.</p>
+      <div class="head"><h3>Community-reported — not a score we invented</h3><span class="chip warn">9 sourced public accounts so far · below our n=10 scoring bar — shown as testimony, not a number</span></div>
+      <p style="color:var(--ink-2);font-size:.95rem;margin-bottom:6px">What those accounts describe: curiosity more than hostility; an American accent that reads before skin color in most interactions; a small but real Black American community anchored around int'l schools and remote-work circles. Colorism exists in local contexts — described as "noticed, not targeted." Resident interviews are underway before this ever becomes a scored pillar.</p>
       <blockquote>"It's the difference between someone hating you and being annoyed by you... they won't need to hear you speak."</blockquote>
       <p class="attr">Comparative framing from a Black American expat discussion, r/AmerExit, 2024</p>
     </div>
@@ -311,6 +340,25 @@
       <button class="btn btn-brass btn-lg" data-nav="quiz">See how KL scores for <em style="font-style:italic">your</em> family →</button>
       <span class="chip"><span class="tick">✓</span> Every claim above gets a source link in the live product</span>
     </div>
+  </div></section>
+</main>
+
+<!-- ============================ METHODOLOGY ============================ -->
+<main id="view-method" class="view">
+  <section class="meth-hero"><div class="wrap">
+    <div class="eyebrow" style="color:var(--brass)">Methodology &amp; sources</div>
+    <h1>The rules we score by.</h1>
+    <p>A ranking you can't interrogate is a vibe with decimals. These are the operating rules behind every number on this site — they are the product.</p>
+  </div></section>
+  <section class="sec"><div class="wrap">
+    <div class="rule"><span class="no">01</span><div><h3>Your weights do the ranking — we never editorialize the order.</h3><p>Every match score is your 100-point allocation multiplied by city pillar scores, summed. Two families get two different rankings from identical data. The math is shown on every card under "Why this score?" — no hidden adjustments, no sponsored placement, ever.</p></div></div>
+    <div class="rule"><span class="no">02</span><div><h3>Every fact carries a source and a date.</h3><p>Visa rules cite the government portal. School fees cite the school's published schedule. Rents cite sampled listings. Each carries a "verified" date; when a fact ages past our freshness bar — 6 months for visas, 12 for fees and healthcare — it's flagged stale until re-checked by a human.</p></div></div>
+    <div class="rule"><span class="no">03</span><div><h3>Thin data says so. Out loud.</h3><p>Where our data is thin, the score is labeled "estimated," drawn with a hatched bar, and the city's confidence rating drops. We'd rather rank lower than invent certainty. Missing data is never silently scored as average-and-hidden.</p></div></div>
+    <div class="rule"><span class="no">04</span><div><h3>Lived-experience data needs at least 10 independent reports before it becomes a number.</h3><p>Community experience — Muslim life quality, Black-family belonging — is real data, but below 10 independent resident reports we show testimony with sourcing, never a score. Above the bar, the count and date range are displayed with the number.</p></div></div>
+    <div class="rule"><span class="no">05</span><div><h3>Deal-breakers exclude cities publicly.</h3><p>If a destination fails your hard constraints — no accredited international school, budget exceeded with school fees included — it's excluded with the exact reason stated, not quietly dropped. An excluded city with a great score is our honesty working as intended.</p></div></div>
+    <div class="rule"><span class="no">06</span><div><h3>We publish information, not advice.</h3><p>Nothing here is legal, immigration, tax, or financial advice, and match results are destinations to research — not visas you qualify for. For your specific case, always verify with official sources and licensed professionals. We link both, everywhere.</p></div></div>
+    <div class="rule"><span class="no">07</span><div><h3>Prototype status, stated plainly.</h3><p>This is a working prototype: five launch cities, scores built from desk research (Aug 2026), quotes drawn from cited public community threads, resident survey in progress. Anything not yet verified to the standard above is labeled — and the live product ships with the receipts visible on every number.</p></div></div>
+    <div class="doss-cta" style="padding-top:26px"><button class="btn btn-brass btn-lg" data-nav="quiz">See it work — find my place →</button></div>
   </div></section>
 </main>
 

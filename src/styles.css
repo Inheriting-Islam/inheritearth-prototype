@@ -45,6 +45,7 @@
 
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
+html,body{overflow-x:clip}
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
 a{color:inherit}
@@ -164,6 +165,39 @@ h1,h2,h3,.serif{font-family:var(--serif);font-weight:560;line-height:1.12;text-w
 .method>div{background:var(--card);padding:22px}
 .method b{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--brass-strong);margin-bottom:8px}
 .method span{font-size:.88rem;color:var(--ink-2)}
+/* founder */
+.founder-in{display:grid;grid-template-columns:140px 1fr;gap:40px;align-items:start}
+.avatar{width:132px;height:132px;border-radius:50%;background:var(--ever);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);border:3px solid var(--brass)}
+.avatar span{font-family:var(--serif);font-style:italic;font-size:2.6rem;color:var(--brass);font-weight:600}
+.founder-p{color:var(--ink-2);max-width:46em;margin-top:14px;line-height:1.7}
+.founder-p b{color:var(--ink)}
+.founder-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+@media (max-width:700px){.founder-in{grid-template-columns:1fr}.avatar{width:96px;height:96px}.avatar span{font-size:2rem}}
+
+/* report offer card */
+.offer{margin:30px 0 0;background:var(--ever);color:var(--on-ever);border-radius:var(--r);padding:30px 34px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;box-shadow:var(--shadow)}
+.offer h3{font-size:1.3rem;color:var(--on-ever)}
+.offer h3 .was{text-decoration:line-through;opacity:.55;font-weight:400;margin-right:.3em}
+.offer h3 .now{color:var(--brass)}
+.offer p{color:var(--on-ever-2);font-size:.92rem;max-width:44em;margin-top:8px}
+.offer .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.offer .chip{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.18);color:var(--on-ever-2)}
+.offer-form{display:grid;gap:10px;min-width:280px}
+.offer-form input{border:1.5px solid rgba(255,255,255,.25);background:rgba(0,0,0,.2);color:var(--on-ever);border-radius:10px;padding:.7em 1em;font:inherit;font-size:.95rem}
+.offer-form input::placeholder{color:rgba(239,233,217,.45)}
+.offer-fine{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;color:var(--on-ever-2);text-transform:uppercase}
+@media (max-width:860px){.offer{grid-template-columns:1fr}}
+
+/* methodology view */
+.meth-hero{background:var(--ever);color:var(--on-ever);padding:64px 0 56px}
+.meth-hero h1{font-size:clamp(2rem,4vw,2.8rem);margin-top:14px}
+.meth-hero p{color:var(--on-ever-2);max-width:44em;margin-top:12px}
+.rule{display:grid;grid-template-columns:56px 1fr;gap:20px;padding:26px 0;border-bottom:1px solid var(--line)}
+.rule:last-child{border-bottom:0}
+.rule .no{font-family:var(--serif);font-style:italic;font-size:1.6rem;color:var(--brass-strong)}
+.rule h3{font-size:1.15rem;margin-bottom:6px}
+.rule p{color:var(--ink-2);font-size:.95rem;max-width:56em}
+
 /* footer */
 .ftr{background:var(--ever);color:var(--on-ever-2);padding:64px 0 34px;font-size:.9rem}
 .ftr-top{display:grid;grid-template-columns:1.3fr .7fr .7fr;gap:48px;align-items:start}
@@ -335,10 +369,22 @@ tr.total td{background:var(--paper-2);font-weight:700;border-top:2px solid var(-
   .visa-cards{grid-template-columns:1fr}
   .two-col{grid-template-columns:1fr}
   .opts.cols{grid-template-columns:1fr}
-  .nav .hide-m{display:none}
+  .hide-m{display:none}
 }
 @media (max-width:560px){
   .dests{grid-template-columns:1fr}
   .stats{grid-template-columns:1fr}
   .gate-form{flex-direction:column}
+  .wrap{padding:0 18px}
+  .hdr-in{height:58px}
+  .nav{gap:2px}
+  .nav button{padding:.45em .5em;font-size:.85rem}
+  .nav button.btn{padding:.55em .85em;font-size:.85rem;margin-left:4px!important}
+  .logo .mark{font-size:1.15rem}
+  .hero-in{padding:44px 0 52px;gap:36px}
+  .hero h1{font-size:2.2rem}
+  .rcard .bd{padding:18px 18px}
+  .offer{padding:22px 20px}
+  .gate-card{padding:24px 20px;margin:0 12px}
+  .doss-hero{min-height:340px}
 }

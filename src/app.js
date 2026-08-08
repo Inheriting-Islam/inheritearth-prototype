@@ -19,7 +19,7 @@ const CITIES = [
     base:2450, feeIntl:9600, feeIslamic:4200, hasIntl:true, hasIslamic:true, beach:false,
     scores:{residency:72, schools:93, faith:92, belonging:74, healthcare:88, safety:78, climate:68},
     conf:  {residency:.9,  schools:.92, faith:.95, belonging:.7, healthcare:.9, safety:.85, climate:.95},
-    tags:['31 international schools','MM2H + DE Rantau routes','JCI hospitals'],
+    tags:['30+ international schools','MM2H + DE Rantau routes','JCI hospitals'],
     love:'English works everywhere, school depth is unmatched in the region, and Muslim life is ambient — azan, halal food, Eid as a national rhythm.',
     weigh:'Traffic and heat are real; international-school fees at the top tier rival Western private schools; PR is discretionary and slow.',
   },
@@ -204,6 +204,31 @@ const QUESTIONS = [
    document.documentElement.dataset.theme=nxt;localStorage.setItem('ie-theme',nxt);
  });}
 
+/* ---------- config + analytics ---------- */
+const CONFIG = {
+  emailEndpoint: 'https://formsubmit.co/ajax/inheritingislam@gmail.com', // first live submission triggers a one-time activation email — click it once
+  reportPrice: {was:49, now:29},
+};
+function track(ev, props){
+  try{
+    if(window.plausible) plausible(ev,{props});
+    if(window.posthog) posthog.capture(ev,props);
+    const k='ie-metrics', m=JSON.parse(localStorage.getItem(k)||'{}');
+    m[ev]=(m[ev]||0)+1; localStorage.setItem(k,JSON.stringify(m));
+    console.debug('[track]',ev,props||'');
+  }catch(_){/* analytics must never break the app */}
+}
+async function submitEmail(email, kind, extra){
+  const payload={email, _subject:`InheritEarth ${kind}`, kind, ...extra,
+    answers: JSON.stringify(S.answers), top: S.results?.ranked?.[0]?.c?.name||''};
+  try{
+    const r=await fetch(CONFIG.emailEndpoint,{method:'POST',
+      headers:{'Content-Type':'application/json',Accept:'application/json'},
+      body:JSON.stringify(payload)});
+    return r.ok;
+  }catch(_){return false}
+}
+
 /* ---------- state ---------- */
 const S = { qi:0, answers:{}, weights:null, results:null, unlocked:false };
 
@@ -222,6 +247,7 @@ function show(view){
   $('#view-'+view).classList.add('active');
   $$('.nav button[data-nav]').forEach(b=>b.classList.toggle('on',b.dataset.nav===view));
   window.scrollTo({top:0,behavior:'instant'});
+  track('view_'+view);
   if(view==='quiz') renderQ();
 }
 document.addEventListener('click',e=>{
@@ -272,6 +298,7 @@ function sel(q,o){const a=S.answers[q.id];return q.multi?(Array.isArray(a)&&a.in
 function next(){
   const q=QUESTIONS[S.qi];
   if(!q.type && S.answers[q.id]===undefined && !q.sensitive) return;
+  track('quiz_step',{q:q.id,n:S.qi+1});
   if(S.qi<QUESTIONS.length-1){S.qi++;renderQ()}
 }
 function back(){if(S.qi>0){S.qi--;renderQ()}}
@@ -329,7 +356,7 @@ function renderWeights(el,q){
   if(!fin){fin=document.createElement('button');fin.id='q-finish';fin.className='btn btn-brass btn-lg';$('#qnav-right').appendChild(fin)}
   fin.textContent=tot===100?'See our matches →':'Balance to 100 to continue';
   fin.disabled=tot!==100;fin.style.opacity=tot===100?1:.55;
-  fin.onclick=()=>{if(tot===100){compute();show('results')}};
+  fin.onclick=()=>{if(tot===100){track('quiz_complete');compute();show('results')}};
 }
 function wDesc(k){return{
   residency:'Visa route, PR odds, growing old there',
@@ -450,6 +477,19 @@ function renderResults(){
       </div></div></div>`;
   }else{
     html+=R.ranked.slice(1).map((r,i)=>cardHTML(r,i+2,labels,R.ranked[i],true)).join('');
+    html+=`<div class="offer">
+      <div>
+        <span class="eyebrow" style="color:var(--brass)">Founding families · first 20 only</span>
+        <h3 style="margin-top:10px">Your Personalized Relocation Snapshot — <span class="was">$${CONFIG.reportPrice.was}</span><span class="now">$${CONFIG.reportPrice.now}</span></h3>
+        <p>A human-researched 15-page report for <em>your</em> family: all ${R.ranked.length+R.excluded.length} cities scored against your answers, real school shortlists with fees, your visa routes with official links, and a month-one budget. Written personally, delivered within 5 days.</p>
+        <div class="chips"><span class="chip">Human-written, not generated</span><span class="chip">5-day delivery</span><span class="chip">Founding price locks your spot</span></div>
+      </div>
+      <form class="offer-form" id="offer-form">
+        <input type="email" required placeholder="you@family.com" aria-label="Email for report reservation" value="${esc(S.email||'')}">
+        <button class="btn btn-onever btn-lg" type="submit">Reserve my report →</button>
+        <span class="offer-fine">No payment now — we email you first</span>
+      </form>
+    </div>`;
   }
 
   // excluded
@@ -465,7 +505,25 @@ function renderResults(){
   <button class="btn btn-ghost" data-nav="quiz">Retake the quiz</button></div></div>`;
   $('#res-wrap').innerHTML=html;
   const gf=$('#gate-form');
-  if(gf) gf.addEventListener('submit',ev=>{ev.preventDefault();S.unlocked=true;renderResults();toast('Report unlocked — in the live product this also lands in your inbox.')});
+  if(gf) gf.addEventListener('submit',async ev=>{
+    ev.preventDefault();
+    const btn=gf.querySelector('button'), email=gf.querySelector('input').value.trim();
+    btn.disabled=true;btn.textContent='Sending…';
+    S.email=email; track('email_submitted',{top:R.ranked[0]?.c.id});
+    const ok=await submitEmail(email,'quiz results signup',{});
+    S.unlocked=true;renderResults();
+    toast(ok?'Unlocked — your results are on their way to your inbox.':'Unlocked. (Email service unreachable — results shown here.)');
+  });
+  const of=$('#offer-form');
+  if(of) of.addEventListener('submit',async ev=>{
+    ev.preventDefault();
+    const btn=of.querySelector('button'), email=of.querySelector('input').value.trim();
+    btn.disabled=true;btn.textContent='Reserving…';
+    track('report_reserved',{top:R.ranked[0]?.c.id});
+    const ok=await submitEmail(email,'REPORT RESERVATION ($'+CONFIG.reportPrice.now+')',{note:'Founding-family personalized report reservation'});
+    btn.textContent=ok?'Reserved ✓ — check your email':'Reserved ✓ (recorded locally)';
+    toast('Reservation received. You\'ll get a personal email from Hamza to confirm before any payment.');
+  });
   // animate meters
   requestAnimationFrame(()=>{$$('.meter i[data-w]').forEach(m=>{m.style.width=m.dataset.w+'%'})});
   // decomposition toggles
@@ -509,10 +567,18 @@ function cardHTML(r,rank,labels,prev,interactive){
 const _origShow=show;
 show=function(v){_origShow(v); if(v==='results') renderResults();};
 
+/* debug: ?debug=overflow lists elements wider than the viewport in document.title */
+if(new URLSearchParams(location.search).get('debug')==='overflow'){
+  setTimeout(()=>{const w=document.documentElement.clientWidth;const out=[];
+    document.querySelectorAll('body *').forEach(e=>{const r=e.getBoundingClientRect();
+      if(r.width>w+1&&e.offsetParent!==null)out.push(`${e.tagName}.${(e.className||'').toString().split(' ')[0]}=${Math.round(r.width)}`)});
+    document.title='SCROLLW:'+document.documentElement.scrollWidth+'|VIEW:'+w+'|'+out.slice(0,30).join('|')},900);
+}
+
 /* hero meters animate on load */
 window.addEventListener('load',()=>{requestAnimationFrame(()=>{$$('.meter i[data-w]').forEach(m=>{m.style.width=m.dataset.w+'%'})})});
 
-/* deep links: #quiz #results #dossier ; ?demo=1 = sample family results */
+/* deep links: #quiz #results #dossier #method ; ?demo=1 = sample family results */
 {const p=new URLSearchParams(location.search);
  if(p.get('demo')){
    S.answers={family:'couple_school',passport:'us',work:'remote_emp',income:7500,school:'intl',spouse:'nice',
@@ -520,5 +586,5 @@ window.addEventListener('load',()=>{requestAnimationFrame(()=>{$$('.meter i[data
      safety:'high',climate:'beach',community:'high',language:'en'};
    S.weights=defaultWeights();compute();show('results');
  }else{
-   const h=location.hash.replace('#','');if(['quiz','results','dossier'].includes(h))show(h);
+   const h=location.hash.replace('#','');if(['quiz','results','dossier','method'].includes(h))show(h);
  }}
