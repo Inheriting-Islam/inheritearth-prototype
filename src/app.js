@@ -246,6 +246,7 @@ function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show'
 
 /* ---------- router ---------- */
 function show(view){
+  if(!$('#view-'+view)) return;               // version may not have this view
   $$('.view').forEach(v=>v.classList.remove('active'));
   $('#view-'+view).classList.add('active');
   $$('.nav button[data-nav]').forEach(b=>b.classList.toggle('on',b.dataset.nav===view));
@@ -596,5 +597,5 @@ if(document.body.classList.contains('anim')){
      safety:'high',climate:'beach',community:'high',language:'en'};
    S.weights=defaultWeights();compute();show('results');
  }else{
-   const h=location.hash.replace('#','');if(['quiz','results','dossier','method'].includes(h))show(h);
+   const h=location.hash.replace('#','');if(['quiz','results','dossier','method','country'].includes(h))show(h);
  }}
