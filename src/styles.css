@@ -79,6 +79,11 @@ h1,h2,h3,.serif{font-family:var(--serif);font-weight:560;line-height:1.12;text-w
 .nav button{background:none;border:0;padding:.5em .85em;border-radius:8px;color:var(--ink-2);font-size:.92rem}
 .nav button:hover{color:var(--ink);background:var(--paper-2)}
 .nav button.on{color:var(--ink);font-weight:600}
+.theme-toggle{width:36px;height:36px;border-radius:9px;border:1px solid var(--line-strong);display:inline-flex;align-items:center;justify-content:center;color:var(--ink-2);font-size:1rem;line-height:1;margin-left:4px}
+.theme-toggle:hover{border-color:var(--brass);color:var(--brass-strong)}
+.theme-toggle::before{content:"☾"}
+:root[data-theme="dark"] .theme-toggle::before{content:"☀"}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .theme-toggle::before{content:"☀"}}
 .btn{display:inline-flex;align-items:center;gap:.5em;border-radius:10px;padding:.72em 1.35em;font-weight:600;font-size:.98rem;border:1px solid transparent;text-decoration:none;transition:transform .12s ease,box-shadow .12s ease}
 .btn:active{transform:translateY(1px)}
 .btn-brass,.nav button.btn-brass{background:var(--brass);color:#FFF9EA;box-shadow:var(--shadow)}

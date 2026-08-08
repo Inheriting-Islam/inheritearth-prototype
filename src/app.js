@@ -192,8 +192,17 @@ const QUESTIONS = [
     help:'This is the whole product: your priorities, not ours. We’ve pre-filled a starting point from your answers — adjust freely.'},
 ];
 
-/* theme override via ?theme=light|dark (testing + user toggle parity) */
-{const th=new URLSearchParams(location.search).get('theme');if(th==='light'||th==='dark')document.documentElement.dataset.theme=th}
+/* theme: saved choice > ?theme= param > system preference */
+{const p=new URLSearchParams(location.search).get('theme');
+ const saved=localStorage.getItem('ie-theme');
+ const th=(p==='light'||p==='dark')?p:(saved==='light'||saved==='dark')?saved:null;
+ if(th)document.documentElement.dataset.theme=th;
+ document.addEventListener('click',e=>{
+   if(!e.target.closest('#theme-toggle'))return;
+   const cur=document.documentElement.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+   const nxt=cur==='dark'?'light':'dark';
+   document.documentElement.dataset.theme=nxt;localStorage.setItem('ie-theme',nxt);
+ });}
 
 /* ---------- state ---------- */
 const S = { qi:0, answers:{}, weights:null, results:null, unlocked:false };
