@@ -489,3 +489,24 @@ i.s3{background:#C2666A}
   .brow .note{display:none}
   .sea-months,.sea-row{grid-template-columns:70px repeat(12,1fr);gap:3px}
 }
+
+/* ---- question wall (replaces who-cards) ---- */
+.qwall{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;align-items:start}
+.qcol{display:grid;gap:16px;align-content:start}
+.qtag{justify-self:start;font-family:var(--disp);font-weight:700;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--apricot-2);border:1.5px solid color-mix(in srgb,var(--apricot) 45%,transparent);border-radius:999px;padding:.4em 1em;margin-bottom:4px;background:var(--card)}
+.qtag.alt{color:var(--gold);border-color:color-mix(in srgb,var(--gold) 55%,transparent);background:var(--dusk);}
+.qb{position:relative;background:var(--card);border:1px solid var(--line);border-radius:20px 20px 20px 6px;padding:18px 20px;font-family:var(--disp);font-weight:560;font-size:1.04rem;line-height:1.42;color:var(--ink);box-shadow:var(--shadow)}
+.qb em{font-style:italic;color:var(--apricot-2)}
+.qb small{display:block;margin-top:10px;font-family:var(--sans);font-weight:400;font-size:.75rem;color:var(--ink-3);border-top:1px dashed var(--line);padding-top:8px}
+.qb.dark{background:var(--dusk-2);color:var(--on-dusk);border:0;border-radius:20px 20px 6px 20px}
+.qb.dark small{color:var(--on-dusk-2);border-top-color:rgba(247,237,224,.2)}
+.qcol .qb:nth-child(2){transform:rotate(-.7deg)}
+.qcol .qb:nth-child(3){transform:rotate(.6deg);justify-self:end;width:92%}
+.qcol .qb:nth-child(4){transform:rotate(-.4deg);width:95%}
+body.anim .qb.will-rise{transform:translateY(20px)}
+body.anim .qcol .qb.risen:nth-child(2){transform:rotate(-.7deg)}
+body.anim .qcol .qb.risen:nth-child(3){transform:rotate(.6deg)}
+body.anim .qcol .qb.risen:nth-child(4){transform:rotate(-.4deg)}
+.qwall-cta{display:flex;gap:22px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:44px;padding-top:34px;border-top:1.5px dashed var(--line-2)}
+.qwall-cta p{font-family:var(--disp);font-weight:640;font-size:1.15rem;color:var(--ink)}
+@media (max-width:980px){.qwall{grid-template-columns:1fr}.qcol .qb:nth-child(3),.qcol .qb:nth-child(4){width:100%;justify-self:stretch}}
