@@ -204,6 +204,9 @@ const QUESTIONS = [
    document.documentElement.dataset.theme=nxt;localStorage.setItem('ie-theme',nxt);
  });}
 
+/* asset root — versions B/C live in subfolders */
+const ROOT=/\/v[23]\//.test(location.pathname)?'../':'';
+
 /* ---------- config + analytics ---------- */
 const CONFIG = {
   emailEndpoint: 'https://formsubmit.co/ajax/inheritingislam@gmail.com', // first live submission triggers a one-time activation email — click it once
@@ -524,8 +527,6 @@ function renderResults(){
     btn.textContent=ok?'Reserved ✓ — check your email':'Reserved ✓ (recorded locally)';
     toast('Reservation received. You\'ll get a personal email from Hamza to confirm before any payment.');
   });
-  // animate meters
-  requestAnimationFrame(()=>{$$('.meter i[data-w]').forEach(m=>{m.style.width=m.dataset.w+'%'})});
   // decomposition toggles
   $$('[data-decomp]').forEach(b=>b.addEventListener('click',()=>{
     const t=document.getElementById('dec-'+b.dataset.decomp);
@@ -537,7 +538,7 @@ function cardHTML(r,rank,labels,prev,interactive){
   const [cb,cl]=confBand(r.conf);
   const label=labels[r.c.id];
   return `<article class="rcard"><div class="rcard-in">
-    <div class="ph" style="background-image:url('assets/${r.c.img}-sm.jpg')"></div>
+    <div class="ph" style="background-image:url('${ROOT}assets/${r.c.img}-sm.jpg')"></div>
     <div class="bd">
       <div class="rtop">
         <span class="rank">${rank<10?'0'+rank:rank}</span>
@@ -575,8 +576,17 @@ if(new URLSearchParams(location.search).get('debug')==='overflow'){
     document.title='SCROLLW:'+document.documentElement.scrollWidth+'|VIEW:'+w+'|'+out.slice(0,30).join('|')},900);
 }
 
-/* hero meters animate on load */
-window.addEventListener('load',()=>{requestAnimationFrame(()=>{$$('.meter i[data-w]').forEach(m=>{m.style.width=m.dataset.w+'%'})})});
+/* meters animate when they enter the viewport; [data-rise] elements fade up (versions opt in via body.anim) */
+const meterIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.style.width=e.target.dataset.w+'%';meterIO.unobserve(e.target)}}),{threshold:.4});
+function armMeters(){$$('.meter i[data-w]').forEach(m=>{if(m.style.width==='0px'||m.style.width==='0%'||!m.style.width)meterIO.observe(m)})}
+window.addEventListener('load',armMeters);
+new MutationObserver(armMeters).observe(document.body,{childList:true,subtree:true});
+if(document.body.classList.contains('anim')){
+  const riseIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('risen');riseIO.unobserve(e.target)}}),{threshold:.18});
+  const armRise=()=>$$('.sec-head,.who .card,.grid3 .card,.dest,.rcard,.stat-t,.vcard,.rule,.commrep,.founder-in,.method>div').forEach(el=>{if(!el.classList.contains('risen'))riseIO.observe(el)});
+  window.addEventListener('load',armRise);
+  new MutationObserver(armRise).observe(document.body,{childList:true,subtree:true});
+}
 
 /* deep links: #quiz #results #dossier #method ; ?demo=1 = sample family results */
 {const p=new URLSearchParams(location.search);

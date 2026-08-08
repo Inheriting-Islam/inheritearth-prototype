@@ -388,3 +388,11 @@ tr.total td{background:var(--paper-2);font-weight:700;border-top:2px solid var(-
   .gate-card{padding:24px 20px;margin:0 12px}
   .doss-hero{min-height:340px}
 }
+
+/* version switcher */
+.vswitch{position:fixed;left:16px;bottom:16px;z-index:98;display:flex;align-items:center;gap:2px;background:var(--card);border:1px solid var(--line-strong);border-radius:999px;padding:4px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;box-shadow:var(--shadow)}
+.vswitch span{color:var(--ink-3);padding:0 8px}
+.vswitch a{color:var(--ink-2);text-decoration:none;padding:.45em .75em;border-radius:999px}
+.vswitch a:hover{color:var(--ink)}
+.vswitch a.cur{background:var(--brass);color:#FFF9EA;font-weight:600}
+@media (max-width:560px){.vswitch{left:10px;bottom:10px}}

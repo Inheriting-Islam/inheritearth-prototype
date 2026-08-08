@@ -16,13 +16,13 @@
 <meta name="twitter:title" content="InheritEarth — Find where in the world your family should live">
 <meta name="twitter:image" content="https://inheriting-islam.github.io/inheritearth-prototype/assets/og.jpg">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>">
-<link rel="stylesheet" href="src/styles.css">
+<link rel="stylesheet" href="styles.css">
 <!-- ANALYTICS — uncomment after creating accounts (see README.md):
 <script defer data-domain="inheriting-islam.github.io" src="https://plausible.io/js/script.js"></script>
 <script>/* PostHog snippet + posthog.init('YOUR_KEY',{api_host:'https://us.i.posthog.com'}) */</script>
 -->
 </head>
-<body>
+<body class="anim">
 
 <header class="hdr"><div class="wrap hdr-in">
   <button class="logo" data-nav="home" aria-label="InheritEarth home">
@@ -51,28 +51,38 @@
       </div>
       <p class="hero-note">FREE · 16 QUESTIONS · ABOUT 4 MINUTES · SKIP ANYTHING PERSONAL</p>
     </div>
-    <div class="stack">
-      <article class="dcard back" aria-hidden="true">
-        <div class="ph" style="background-image:url('assets/dakar-sm.jpg')"></div>
-        <div class="bd"><h3>Dakar <span class="match">84</span></h3></div>
-      </article>
-      <article class="dcard front">
-        <div class="ph" style="background-image:url('assets/kl-skyline-sm.jpg')"></div>
-        <div class="bd">
-          <h3>Kuala Lumpur <span class="match">91 · Excellent fit</span></h3>
-          <div class="rows">
-            <div class="drow"><span class="lbl">Schools</span><span class="meter"><i data-w="93" style="width:0"></i></span><span class="val">93</span></div>
-            <div class="drow"><span class="lbl">Muslim life</span><span class="meter"><i data-w="92" style="width:0"></i></span><span class="val">92</span></div>
-            <div class="drow"><span class="lbl">Healthcare</span><span class="meter"><i data-w="88" style="width:0"></i></span><span class="val">88</span></div>
-            <div class="drow"><span class="lbl">Cost fit</span><span class="meter"><i data-w="76" style="width:0"></i></span><span class="val">76</span></div>
-          </div>
-          <div class="foot">
-            <span class="chip"><span class="tick">✓</span> Verified Aug 2026</span>
-            <span class="chip">30+ int'l schools</span>
-          </div>
-        </div>
-      </article>
-      <div class="hero-badge"><b>Why not #1 for everyone?</b> Because your weights aren't everyone's. A family that puts 25 points on belonging sees Dakar first.</div>
+    <div class="globe-wrap" aria-hidden="true">
+      <svg class="globe" viewBox="0 0 520 520" role="img" aria-label="Wireframe globe with plotted destinations">
+        <defs>
+          <radialGradient id="gfill" cx="38%" cy="32%" r="75%">
+            <stop offset="0%" stop-color="rgba(63,198,255,.10)"/><stop offset="70%" stop-color="rgba(63,198,255,.03)"/><stop offset="100%" stop-color="rgba(63,198,255,0)"/>
+          </radialGradient>
+        </defs>
+        <circle cx="260" cy="260" r="238" fill="url(#gfill)" stroke="rgba(140,190,255,.5)" stroke-width="1.2"/>
+        <ellipse cx="260" cy="260" rx="238" ry="238" fill="none" stroke="rgba(140,190,255,.14)"/>
+        <ellipse cx="260" cy="260" rx="160" ry="238" fill="none" stroke="rgba(140,190,255,.22)"/>
+        <ellipse cx="260" cy="260" rx="80" ry="238" fill="none" stroke="rgba(140,190,255,.22)"/>
+        <line x1="260" y1="22" x2="260" y2="498" stroke="rgba(140,190,255,.22)"/>
+        <ellipse cx="260" cy="260" rx="238" ry="80" fill="none" stroke="rgba(140,190,255,.22)"/>
+        <ellipse cx="260" cy="260" rx="238" ry="160" fill="none" stroke="rgba(140,190,255,.22)"/>
+        <line x1="22" y1="260" x2="498" y2="260" stroke="rgba(140,190,255,.35)" stroke-dasharray="3 5"/>
+        <g class="sweep"><path d="M260 260 L260 22 A238 238 0 0 1 428 92 Z" fill="rgba(63,198,255,.06)"/></g>
+        <path class="route r1" d="M95 180 Q 250 60 390 300" fill="none" stroke="#FFB020" stroke-width="1.4" stroke-dasharray="6 7"/>
+        <path class="route r2" d="M95 180 Q 120 260 150 290" fill="none" stroke="#FFB020" stroke-width="1.2" stroke-dasharray="5 7"/>
+        <path class="route r3" d="M95 180 Q 150 170 185 215" fill="none" stroke="#FFB020" stroke-width="1.2" stroke-dasharray="5 7"/>
+        <path class="route r4" d="M95 180 Q 280 110 400 340" fill="none" stroke="rgba(255,176,32,.55)" stroke-width="1" stroke-dasharray="4 8"/>
+        <g class="city" transform="translate(95,180)"><circle r="4" fill="#D9E7F5"/><circle class="pulse" r="4" fill="none" stroke="#D9E7F5"/><text x="-10" y="-10" text-anchor="end">HOME</text></g>
+        <g class="city hot" transform="translate(390,300)"><circle r="5" fill="#FFB020"/><circle class="pulse" r="5" fill="none" stroke="#FFB020"/><text x="12" y="4">KUL · 91</text></g>
+        <g class="city" transform="translate(378,272)"><circle r="3.5" fill="#3FC6FF"/><circle class="pulse" r="3.5" fill="none" stroke="#3FC6FF"/><text x="10" y="-6">PEN · 84</text></g>
+        <g class="city" transform="translate(400,340)"><circle r="3.5" fill="#3FC6FF"/><circle class="pulse" r="3.5" fill="none" stroke="#3FC6FF"/><text x="12" y="14">LOP · 78</text></g>
+        <g class="city" transform="translate(150,290)"><circle r="4" fill="#3FC6FF"/><circle class="pulse" r="4" fill="none" stroke="#3FC6FF"/><text x="-12" y="18" text-anchor="end">DKR · 84</text></g>
+        <g class="city" transform="translate(185,215)"><circle r="3.5" fill="#3FC6FF"/><circle class="pulse" r="3.5" fill="none" stroke="#3FC6FF"/><text x="-12" y="-8" text-anchor="end">CMN · 80</text></g>
+      </svg>
+      <div class="globe-readout">
+        <div class="gr-row"><span>TRACKING</span><b>5 DESTINATIONS · 2 ROUTES ACTIVE</b></div>
+        <div class="gr-row"><span>DATA</span><b>SOURCED &amp; DATED · AUG 2026</b></div>
+        <div class="gr-row blink"><span>STATUS</span><b>AWAITING YOUR COORDINATES →</b></div>
+      </div>
     </div>
   </div></section>
 
@@ -111,15 +121,15 @@
       <h2>Five cities, researched deep — not five hundred, researched thin.</h2>
     </div>
     <div class="dests">
-      <button class="dest" data-nav="dossier"><span class="ph" style="background-image:url('assets/kl-skyline-sm.jpg')"></span>
+      <button class="dest" data-nav="dossier"><span class="ph" style="background-image:url('../assets/kl-skyline-sm.jpg')"></span>
         <span class="bd"><h3>Kuala Lumpur</h3><span class="stat">Family budget <b>~$3,400/mo</b></span><span class="stat">Deepest school bench in the region</span></span></button>
-      <button class="dest" data-nav="quiz"><span class="ph" style="background-image:url('assets/penang-sm.jpg')"></span>
+      <button class="dest" data-nav="quiz"><span class="ph" style="background-image:url('../assets/penang-sm.jpg')"></span>
         <span class="bd"><h3>Penang</h3><span class="stat">Family budget <b>~$2,700/mo</b></span><span class="stat">Island pace, real schools</span></span></button>
-      <button class="dest" data-nav="quiz"><span class="ph" style="background-image:url('assets/lombok-beach-sm.jpg')"></span>
+      <button class="dest" data-nav="quiz"><span class="ph" style="background-image:url('../assets/lombok-beach-sm.jpg')"></span>
         <span class="bd"><h3>Lombok</h3><span class="stat">Family budget <b>~$1,900/mo</b></span><span class="stat">1,000 mosques, thin schools</span></span></button>
-      <button class="dest" data-nav="quiz"><span class="ph" style="background-image:url('assets/dakar-sm.jpg')"></span>
+      <button class="dest" data-nav="quiz"><span class="ph" style="background-image:url('../assets/dakar-sm.jpg')"></span>
         <span class="bd"><h3>Dakar</h3><span class="stat">Family budget <b>~$2,900/mo</b></span><span class="stat">Diaspora belonging, Atlantic</span></span></button>
-      <button class="dest" data-nav="quiz"><span class="ph" style="background-image:url('assets/casablanca-sm.jpg')"></span>
+      <button class="dest" data-nav="quiz"><span class="ph" style="background-image:url('../assets/casablanca-sm.jpg')"></span>
         <span class="bd"><h3>Casablanca</h3><span class="stat">Family budget <b>~$2,600/mo</b></span><span class="stat">3h to Europe, mild coast</span></span></button>
     </div>
     <p class="proto-note" style="margin-top:22px">PROTOTYPE — budgets are illustrative desk-research figures (Aug 2026) for a family of four before school fees. The live product shows the full sourced budget model per city.</p>
@@ -210,7 +220,7 @@
 
 <!-- ============================ DOSSIER ============================ -->
 <main id="view-dossier" class="view">
-  <section class="doss-hero" style="background-image:url('assets/kl-skyline.jpg')"><div class="wrap">
+  <section class="doss-hero" style="background-image:url('../assets/kl-skyline.jpg')"><div class="wrap">
     <div class="eyebrow" style="color:var(--brass)">City dossier · Malaysia</div>
     <h1>Kuala Lumpur</h1>
     <p class="sub">The deepest family toolkit in the Muslim world: 30+ international schools, JCI hospitals, English everywhere, and a visa menu that actually includes families.</p>
@@ -315,7 +325,7 @@
           <p class="attr">Malaysian local, r/MuslimLounge thread, 2023</p>
         </div>
       </div>
-      <div><img src="assets/masjid.jpg" alt="Putra Mosque, Putrajaya" style="border-radius:14px;height:100%;object-fit:cover" loading="lazy"></div>
+      <div><img src="../assets/masjid.jpg" alt="Putra Mosque, Putrajaya" style="border-radius:14px;height:100%;object-fit:cover" loading="lazy"></div>
     </div>
   </div></section>
 
@@ -362,8 +372,8 @@
   </div></section>
 </main>
 
-<nav class="vswitch" aria-label="Design versions"><span>Design</span><a href="./" class="cur">A</a><a href="v2/">B</a><a href="v3/">C</a></nav>
+<nav class="vswitch" aria-label="Design versions"><span>Design</span><a href="../">A</a><a href="./" class="cur">B</a><a href="../v3/">C</a></nav>
 <div class="toast" id="toast" role="status"></div>
-<script src="src/app.js"></script>
+<script src="../src/app.js"></script>
 </body>
 </html>

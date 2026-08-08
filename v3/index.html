@@ -16,13 +16,13 @@
 <meta name="twitter:title" content="InheritEarth — Find where in the world your family should live">
 <meta name="twitter:image" content="https://inheriting-islam.github.io/inheritearth-prototype/assets/og.jpg">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>">
-<link rel="stylesheet" href="src/styles.css">
+<link rel="stylesheet" href="styles.css">
 <!-- ANALYTICS — uncomment after creating accounts (see README.md):
 <script defer data-domain="inheriting-islam.github.io" src="https://plausible.io/js/script.js"></script>
 <script>/* PostHog snippet + posthog.init('YOUR_KEY',{api_host:'https://us.i.posthog.com'}) */</script>
 -->
 </head>
-<body>
+<body class="anim">
 
 <header class="hdr"><div class="wrap hdr-in">
   <button class="logo" data-nav="home" aria-label="InheritEarth home">
@@ -51,28 +51,11 @@
       </div>
       <p class="hero-note">FREE · 16 QUESTIONS · ABOUT 4 MINUTES · SKIP ANYTHING PERSONAL</p>
     </div>
-    <div class="stack">
-      <article class="dcard back" aria-hidden="true">
-        <div class="ph" style="background-image:url('assets/dakar-sm.jpg')"></div>
-        <div class="bd"><h3>Dakar <span class="match">84</span></h3></div>
-      </article>
-      <article class="dcard front">
-        <div class="ph" style="background-image:url('assets/kl-skyline-sm.jpg')"></div>
-        <div class="bd">
-          <h3>Kuala Lumpur <span class="match">91 · Excellent fit</span></h3>
-          <div class="rows">
-            <div class="drow"><span class="lbl">Schools</span><span class="meter"><i data-w="93" style="width:0"></i></span><span class="val">93</span></div>
-            <div class="drow"><span class="lbl">Muslim life</span><span class="meter"><i data-w="92" style="width:0"></i></span><span class="val">92</span></div>
-            <div class="drow"><span class="lbl">Healthcare</span><span class="meter"><i data-w="88" style="width:0"></i></span><span class="val">88</span></div>
-            <div class="drow"><span class="lbl">Cost fit</span><span class="meter"><i data-w="76" style="width:0"></i></span><span class="val">76</span></div>
-          </div>
-          <div class="foot">
-            <span class="chip"><span class="tick">✓</span> Verified Aug 2026</span>
-            <span class="chip">30+ int'l schools</span>
-          </div>
-        </div>
-      </article>
-      <div class="hero-badge"><b>Why not #1 for everyone?</b> Because your weights aren't everyone's. A family that puts 25 points on belonging sees Dakar first.</div>
+    <div class="arch-scene" aria-hidden="true">
+      <div class="sun-disc"></div>
+      <div class="arch"><img src="../assets/family.jpg" alt=""></div>
+      <div class="arch-caption">Your family's <b>91 · Excellent fit</b> is out there</div>
+      <div class="hero-badge"><b>Why not one answer for everyone?</b> Because your weights aren't everyone's. A family that leads with belonging sees Dakar first.</div>
     </div>
   </div></section>
 
@@ -111,15 +94,15 @@
       <h2>Five cities, researched deep — not five hundred, researched thin.</h2>
     </div>
     <div class="dests">
-      <button class="dest" data-nav="dossier"><span class="ph" style="background-image:url('assets/kl-skyline-sm.jpg')"></span>
+      <button class="dest" data-nav="dossier"><span class="ph" style="background-image:url('../assets/kl-skyline-sm.jpg')"></span>
         <span class="bd"><h3>Kuala Lumpur</h3><span class="stat">Family budget <b>~$3,400/mo</b></span><span class="stat">Deepest school bench in the region</span></span></button>
-      <button class="dest" data-nav="quiz"><span class="ph" style="background-image:url('assets/penang-sm.jpg')"></span>
+      <button class="dest" data-nav="quiz"><span class="ph" style="background-image:url('../assets/penang-sm.jpg')"></span>
         <span class="bd"><h3>Penang</h3><span class="stat">Family budget <b>~$2,700/mo</b></span><span class="stat">Island pace, real schools</span></span></button>
-      <button class="dest" data-nav="quiz"><span class="ph" style="background-image:url('assets/lombok-beach-sm.jpg')"></span>
+      <button class="dest" data-nav="quiz"><span class="ph" style="background-image:url('../assets/lombok-beach-sm.jpg')"></span>
         <span class="bd"><h3>Lombok</h3><span class="stat">Family budget <b>~$1,900/mo</b></span><span class="stat">1,000 mosques, thin schools</span></span></button>
-      <button class="dest" data-nav="quiz"><span class="ph" style="background-image:url('assets/dakar-sm.jpg')"></span>
+      <button class="dest" data-nav="quiz"><span class="ph" style="background-image:url('../assets/dakar-sm.jpg')"></span>
         <span class="bd"><h3>Dakar</h3><span class="stat">Family budget <b>~$2,900/mo</b></span><span class="stat">Diaspora belonging, Atlantic</span></span></button>
-      <button class="dest" data-nav="quiz"><span class="ph" style="background-image:url('assets/casablanca-sm.jpg')"></span>
+      <button class="dest" data-nav="quiz"><span class="ph" style="background-image:url('../assets/casablanca-sm.jpg')"></span>
         <span class="bd"><h3>Casablanca</h3><span class="stat">Family budget <b>~$2,600/mo</b></span><span class="stat">3h to Europe, mild coast</span></span></button>
     </div>
     <p class="proto-note" style="margin-top:22px">PROTOTYPE — budgets are illustrative desk-research figures (Aug 2026) for a family of four before school fees. The live product shows the full sourced budget model per city.</p>
@@ -210,7 +193,7 @@
 
 <!-- ============================ DOSSIER ============================ -->
 <main id="view-dossier" class="view">
-  <section class="doss-hero" style="background-image:url('assets/kl-skyline.jpg')"><div class="wrap">
+  <section class="doss-hero" style="background-image:url('../assets/kl-skyline.jpg')"><div class="wrap">
     <div class="eyebrow" style="color:var(--brass)">City dossier · Malaysia</div>
     <h1>Kuala Lumpur</h1>
     <p class="sub">The deepest family toolkit in the Muslim world: 30+ international schools, JCI hospitals, English everywhere, and a visa menu that actually includes families.</p>
@@ -315,7 +298,7 @@
           <p class="attr">Malaysian local, r/MuslimLounge thread, 2023</p>
         </div>
       </div>
-      <div><img src="assets/masjid.jpg" alt="Putra Mosque, Putrajaya" style="border-radius:14px;height:100%;object-fit:cover" loading="lazy"></div>
+      <div><img src="../assets/masjid.jpg" alt="Putra Mosque, Putrajaya" style="border-radius:14px;height:100%;object-fit:cover" loading="lazy"></div>
     </div>
   </div></section>
 
@@ -362,8 +345,8 @@
   </div></section>
 </main>
 
-<nav class="vswitch" aria-label="Design versions"><span>Design</span><a href="./" class="cur">A</a><a href="v2/">B</a><a href="v3/">C</a></nav>
+<nav class="vswitch" aria-label="Design versions"><span>Design</span><a href="../">A</a><a href="../v2/">B</a><a href="./" class="cur">C</a></nav>
 <div class="toast" id="toast" role="status"></div>
-<script src="src/app.js"></script>
+<script src="../src/app.js"></script>
 </body>
 </html>
